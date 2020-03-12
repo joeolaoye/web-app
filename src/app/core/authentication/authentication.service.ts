@@ -103,7 +103,8 @@ export class AuthenticationService {
           })
         );
     } else {
-      return this.http.post('/authentication', {}, { params: httpParams })
+      let authData = '{"username":"' + loginContext.username + '", "password":"' + loginContext.password + '"}';
+      return this.http.post('/authentication', authData, { params: httpParams })
         .pipe(
           map((credentials: Credentials) => {
             this.onLoginSuccess(credentials);
